@@ -1,0 +1,87 @@
+# Test data
+
+Km(currentPrice):
+  startDate: 2009-10-25
+  endDate: 2010-10-25
+  price: 0.39
+Km(oldPrice):
+  startDate: 2007-10-25
+  endDate: 2009-10-25
+  price: 0.37
+
+User(virginie):
+  firstName: Virginie
+  lastName: Lorne
+  login: vlo
+  password: vlo
+
+Business(258):
+  number: 258
+  label: CH Montperrin
+  place: AIX Ville
+  trip: AIX Ville AR
+  kmNumber: 10
+
+Business(339):
+  number: 339
+  label: Ilot St Jean
+  place: AVIGNON
+  trip: AIX - AVIGNON AR
+  kmNumber: 200
+  tripObject: AIX - AVIGNON AR
+  tripPrice: 11.6
+  
+Ndf(08):
+  date: 2009-08-01
+  kmPrice: currentPrice
+  user: virginie
+
+Ndf(09):
+  date: 2009-09-01
+  kmPrice: currentPrice
+  user: virginie
+
+Ndf(10):
+  date: 2009-10-01
+  kmPrice: currentPrice
+  user: virginie
+
+NdfItem(0801):
+  ndf: 08
+  business: 258
+  date: 2009-08-04
+  object: CH Montperrin
+  place: AIX Ville
+  trip: AIX Ville AR
+  kmNumber: 10
+  kmPrice: 3.9
+
+NdfItem(0802):
+  ndf: 08
+  business: 339
+  date: 2009-08-05
+  object: Ilot St Jean
+  place: AIX - AVIGNON AR
+  trip: AIX Ville AR
+  kmNumber: 200
+  kmPrice: 78
+
+NdfItem(1001):
+  ndf: 10
+  business: 258
+  date: 2009-10-04
+  object: CH Montperrin
+  place: AIX Ville
+  trip: AIX Ville AR
+  kmNumber: 10
+  kmPrice: 3.9
+  
+NdfItem(1002):
+  ndf: 10
+  business: 339
+  date: 2009-10-05
+  object: Ilot St Jean
+  place: AIX - AVIGNON AR
+  trip: AIX Ville AR
+  kmNumber: 200
+  kmPrice: 78

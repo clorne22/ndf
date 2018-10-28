@@ -1,0 +1,30 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Import Secure routes
+*       /                                       module:secure
+
+# Home page
+GET     /                                       Application.index
+
+# NDF pages
+GET		/ndfs/generatePDF/{id}							Ndfs.generatePDF
+GET     /show/{id}                      Ndfs.show
+GET     /older                          Ndfs.listNdfs
+
+GET     /kms                            Application.kms
+GET     /km/{id}                        Application.showKm
+GET     /km/{id}/delete                 Application.deleteKm
+POST    /kms                            Application.saveKm
+
+GET     /statistics/mine                StatisticsController.mine
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Import CRUD routes
+*       /ndf/                                   module:crud
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}

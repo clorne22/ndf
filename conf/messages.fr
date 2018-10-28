@@ -1,0 +1,124 @@
+# You can specialize this file for each language.
+# For exemple, for french create a messages.fr file
+#
+
+add.Business=Ajouter une affaire
+add.Km=Ajouter un paramétrage kilométrique
+add.NdfItem=Ajouter une ligne de frais pour le mois de %s
+add.User=Ajouter un utilisateur
+
+delete.Business=Supprimer une affaire
+delete.Km=Supprimer un paramétrage kilométrique
+delete.NdfItem=Supprimer une ligne de frais
+delete.User=Supprimer un utilisateur
+delete.User.error=Impossible de supprimer un utilisateur: Il possède des notes de frais
+
+ndf.km.duplicate.dates = Une autre note de frais tombe déjà dans la période de date entrée.
+ndf.km.enddate = La date de fin doit être postérieure à la date de début
+ndf.km.ndfnotfound = Ce km est dejà référencé par une note de frais. Suppression impossible.
+
+list.Businesss = Affaires
+list.Users = Utilisateurs
+
+saved.Business = L'affaire a bien été sauvegardée
+saved.Km = Le paramétrage kilométrique a bien été sauvegardé
+saved.NdfItem = La ligne de frais a bien été sauvegardée
+saved.User = L'utilisateur a bien été sauvegardé
+
+show.Business = Modification d'une affaire
+show.Km = Modification d'un paramétrage kilométrique
+show.NdfItem = Modification d'une ligne de frais pour le mois de %s
+show.User = Modification d'un utilisateur
+
+# Keys for the authentication module
+secure.username = Identifiant :
+secure.password = Mot de passe :
+secure.remember = Se souvenir
+secure.signin = Se connecter
+secure.error = Erreur d'authentification.
+secure.logout = Vous n'êtes plus déconnecté à l'application.
+
+# Keys for the CRUD module
+crud.title=Administration
+crud.home=Accueil
+crud.blank=Nouveau
+crud.index.title=Choix de l'objet à modifier
+crud.index.objectType=Type de l'objet
+crud.index.action=
+crud.index.add=Ajouter
+crud.add=Ajouter &{%s}
+crud.list.title=Gestion des &{%s}
+crud.list.size=%d &{%s}
+crud.list.totalSize=%d total
+crud.pagination.previous=« Précédent
+crud.pagination.next=Suivant »
+crud.show.title=Modification &{%s}
+crud.show.title.Business=Modification d'une affaire
+crud.show.title.Km=Modification d'une affaire
+crud.show.title.NdfItem=Modification d'une affaire
+crud.show.title.User=Modification d'un utilisateur
+crud.save=Sauvegarder
+crud.saveAndContinue=Sauvegarder et continuer la modification
+crud.saveAndUpdateBusiness=Sauvegarder et mettre à jour l'affaire
+crud.cancel=Annuler
+crud.hasErrors=SVP corrigez les erreurs
+crud.blank.title=Ajouter &{%s}
+crud.saveAndAddAnother=Sauvegarder et créer un autre
+crud.delete=Supprimer &{%s}
+crud.created=Le &{%s} a été créé
+crud.saved=Le &{%s} a été sauvegardé
+crud.deleted=Le &{%s} a été supprimé
+crud.delete.error=Suppression de l'objet impossible
+crud.search=Rechercher
+crud.none=(Néant)
+
+crud.help.required=Obligatoire.
+crud.help.minlength=La taille minimale est %d.
+crud.help.email=Email addresse valide.
+crud.help.dateformat=DD/MM/YYYY format.
+crud.help.numeric=Numérique.
+crud.help.min=Doit être supérieur à %d.
+crud.help.future=Dans le futur.
+crud.help.past=Dans le passé.
+crud.help.after=Après %s.
+crud.help.before=Avant %s.
+crud.help.range=Entre %d et %d
+
+validation.required = %s est obligatoire
+
+
+# Others Keys shared among several screens
+common.delete = Suppression
+common.duplicate = Duplication
+
+
+
+administrator = Administrateur
+business = Affaire
+dayNumber = Jour du mois
+endDate = Date de fin
+firstName = Prénom
+itemDate = Date
+itemObject = Libellé
+kmNumber = Nb Km
+label = Affaire
+lastName = Nom
+login = Identifiant
+ndfItemKmPrice = Frais Km
+ndfItemTripPrice = Frais Dép.
+number = N°
+password = Mot de passe
+place = Lieu
+price = Prix
+startDate = Date de début
+trip = Trajet
+tripObject = Objet déplacement
+tripPrice = Frais
+
+
+
+ndfitem.validation.required = Le N° que vous avez fourni ne peut pas être converti en date pour le mois concerné
+
+############# MESSAGES DE VALIDATION ############
+validation.max=Ne peut pas être supérieur à %2$d
+
