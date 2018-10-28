@@ -1,0 +1,11 @@
+#north {
+	background:  url('/public/images/ad2i2.jpg') no-repeat scroll center top;
+}
+
+/* Particularités de certains composants HTML des pages */
+
+/* Le select qui permet de sélectionner l'affaire à laquelle correspond la ligne de frais.
+Si on ne met pas le width, le select se taille à la largeur maxi des éléments. */
+#object_business {
+	width: 60%;
+}

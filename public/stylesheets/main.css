@@ -1,0 +1,214 @@
+/** Main layout **/
+
+html, body {
+    background: #F0F0F0;
+    font-family: 'Lucida grande', verdana, sans-serif;
+    font-size: 100%;
+}
+.clear { clear: both; }
+.center { text-align: center; }
+.right { text-align: right; }
+.error {
+	font-weight: bold;
+	color: red;
+	font-size: 70%;
+}
+.modal {
+    background-color:#fff; 
+    display:none; 
+    width:350px; 
+    padding:15px; 
+    text-align:left; 
+    border:2px solid #333; 
+ 
+    opacity:0.8; 
+    -moz-border-radius:6px; 
+    -webkit-border-radius:6px; 
+    -moz-box-shadow: 0 0 50px #ccc; 
+    -webkit-box-shadow: 0 0 50px #ccc; 
+}
+.legend {
+	font-size: 70%;
+	font-style: italic;
+}
+.important {
+	font-size: 110%;
+	font-weight: bold;
+}
+
+/** HTML Elements default **/
+a, a:visited {
+	color: #364b66;
+}
+div, p, span, h1, h2, h3, ul, li, table, tr, th, td {
+	margin: 0;
+	padding: 0;	
+}
+div#old table {
+	border-collapse: collapse;
+	border: 2px solid #a64c4c;
+	width: 100%;
+}
+div#old table tr {
+/*	border: 1px solid #a67070;*/
+}
+div#old table thead tr {
+	border: 1px solid #a64c4c;
+}
+div#old table th, div#old table td {
+	font-size: 80%;
+	padding: 1px 2px;
+	border-right: 1px solid #a64c4c;
+	border-left: 1px solid #a64c4c;
+}
+h1 {
+	font-size: 120%;
+}
+h2 {
+	font-size: 100%;
+}
+input, textarea, select {
+	font-family: 'Helvetica', 'Arial', 'Sans';
+	font-size: 80%;
+}
+label {
+	display: block;
+	font-weight: bold;
+	font-size: 80%;
+	width: 20%;
+	float: left;
+	color: #666;
+	cursor: pointer;
+}
+
+
+
+/** LAYOUT **/
+body {
+	width: 900px;
+	padding: 0 30px;
+	margin: auto;
+	color: #364b66;
+}
+#header {
+	padding: 0;
+	position: relative;
+	margin: 0;
+	/*margin-top: 10px;*/
+	/*-moz-border-radius: 16px;*/
+}
+#logo {
+	position: relative;
+	background-image: url('/public/images/logo.jpg');
+	width: 216px;
+	height: 99px;
+	float: left;
+}
+#footer {
+	text-align: center;
+	font-size: 70%;
+}
+#global {
+	margin-top: 10px;
+	-moz-border-radius: 16px;
+	padding: 10px;
+	border: 10px solid #ccc;
+	background: #FFFFFF;
+}
+#message {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	right: 20px;
+	top: 0px;
+	text-align: right;
+	font-size: 70%;
+}
+#message a {
+	font-style: italic;
+}
+#main {
+	background-image: url('/public/images/bg.png');
+	background-position: top left;
+	background-repeat: repeat-y;
+	border: 1px solid #ccc;
+}
+#left {
+	float: left;
+	width: 200px;
+	padding: 5px;
+}
+#center {
+	margin-left: 200px;
+	padding: 10px 20px;
+}
+
+
+
+/** ZONES / MODULES **/
+p.feedback {
+    margin: 15px 0px;
+    background-color: #FBF7F9;
+    padding: 10px;
+    font-weight: bold;
+}
+p.error { color: red; }
+p.ok { color: green; }
+
+#title h2 {
+	font-style: italic;
+	margin-top: 15px;
+}
+.module {
+	font-weight: bold;
+	margin: 5px 0px;
+}
+.moduleitem {
+	list-style-type: none;
+	font-size: 70%;
+	padding: 0px 5px;
+	margin: 0 0 15px 0;
+}
+
+
+
+
+
+#crud {
+	font-size: 80%;
+}
+
+#crudListPagination {
+	background:#EFEFEF none repeat scroll 0 0;
+	padding:4px 5px;
+	margin: 5px 0;
+	position:relative;
+    border:2px solid #333; 
+}
+#crudListPagination .crudPages {
+	position:absolute;
+	right:5px;
+	top:4px;
+}
+div.crudField {
+	margin-bottom: 2px;
+}
+
+.crudFlash {
+	padding: 5px 20px;
+	border-bottom: 1px solid #ddd;
+	color: #fff;
+}
+
+.flashError {
+	background: #c00;
+}
+
+.flashSuccess {
+	background: #54BD06;
+}
+.crudHelp {
+	font-size: 60%;
+	color: grey;
+	font-style: italic;
+}
