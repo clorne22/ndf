@@ -1,0 +1,5 @@
+<input class="easyui-textbox" name="${_name}" id="${_name}"
+    ${_type ? "type=${_type}" : ""}
+    data-options="${_dataoptions}"
+    value='${flash[_name] ? flash[_name] : (_value == "null" ? "" : _value)}'></input>
+<span class="error">#{error _name /}</span>

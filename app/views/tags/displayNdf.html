@@ -1,0 +1,32 @@
+*{display a ndf in one of these modes: 'full', 'teaser'}*
+
+<div class="ndf">
+	<h2 class="ndf-title">
+		<a href="#">${_ndf.date.format('MMMM yyyy')}</a>
+		<span>Prix du Km: ${_ndf.kmPrice.price}</span>
+		#{if _as == 'full'}
+			#{if _ndf.items.size() > 0}
+				<table class="flexme">
+				<thead>
+				<tr>
+					<th>Date</th>
+					<th>N°</th>
+					<th>Objet</th>
+					<th>Prix</th>
+				</tr>
+				</thead>
+				<tbody>
+					#{list items: _ndf.items, as: 'item'}
+					<tr>
+						<td>${item.date.format('dd/MM/yyyy')}</td>
+						<td>${item.business.number}</td>
+						<td>${item.object}</td>
+						<td>${item.kmPrice}</td>
+					</tr>
+					#{/list}
+				</tbody>
+				</table>
+			#{/if}		
+		#{/if}
+	</h2>
+</div>

@@ -1,0 +1,41 @@
+#{extends 'CRUD/layout.html' /}
+
+<div id="crudList" class="${type.name}">
+	
+	<h2 id="crudListTitle">&{'crud.list.title', 'list.' + type.name}</h2>
+
+    <div id="old">
+	<div id="crudListSearch">
+		#{crud.search /}
+	</div>
+
+	<div id="crudListPagination">
+		#{crud.pagination /}
+	</div>
+	<div id="crudListTable">
+		#{crud.table fields:['number', 'label', 'place', 'km', 'Sup']}
+			#{crud.custom 'number'}<p class="center">${object.number}</p>#{/crud.custom}
+			#{crud.custom 'label'}<a href="@{Businesss.show(object.id)}">${object.label}</a>#{/crud.custom}
+			#{crud.custom 'km'}<p class="center">${object.km}</p>#{/crud.custom}
+			#{crud.custom 'Sup'}
+				#{if object.items.isEmpty()}
+					#{form @delete(object.id)}
+						<p class="center"><input type="submit" class="crudListDelete" value="&{'common.delete'}" /></p>
+					#{/form}
+				#{/if}
+			#{/crud.custom}
+		#{/crud.table}
+	</div>
+	
+	<div id="crudListPagination">
+		#{crud.pagination /}
+	</div>
+	
+	<p id="crudListAdd">
+		<a href="@{blank()}">&{'add.' + type.modelName}</a>
+		| <a href="@{showUpload()}">Importer les affaires depuis fichier Excel</a>
+	</p>
+	
+	</div>
+
+</div>

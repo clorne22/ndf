@@ -1,0 +1,65 @@
+#{extends 'main.html' /}
+
+<table class="easyui-datagrid" title="Utilisateurs" id="dg"
+    
+    data-options="
+        singleSelect:true
+        , iconCls:'icon-edit'
+        , rownumbers:true
+        , fitColumns:true
+        , toolbar:'#tb'
+        "
+    >
+    <thead>
+        <tr>
+            <th data-options="field:'id'">Identifiant</th>
+            <th data-options="field:'name'">Nom</th>
+            <th data-options="field:'login'">Login</th>
+            <th data-options="field:'password'">Mot de passe</th>
+            <th data-options="field:'admin'">Administrateur</th>
+            <th data-options="field:'peage'">Péage</th>
+        </tr>
+    </thead>
+    <tbody>
+	    #{list items: users, as:'user'}
+	       <tr>
+	           <td>${user.id}</td>
+	           <td>
+	               <a href="@{Application.showUser(user.id)}" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'">
+	                   ${user.firstName} ${user.lastName} 
+	               </a>
+	           </td>
+               <td>${user.login}</td>
+               <td>XXXXXX</td>
+               <td>${user.administrator}</td>
+               <td>${user.peage}</td>
+	       </tr>
+	    #{/list}
+    </tbody>
+</table>
+<div id="tb" style="padding:2px 5px;">
+    <a href="@{Application.showUser()}" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">Ajout</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit()">Suppression</a>
+</div>
+
+<script type="text/javascript">
+
+function removeit() {
+	var row = $('#dg').datagrid('getSelected');
+	if (row) {
+		$.messager.confirm('Confirmation de suppression'
+			, 'Etes-vous de vouloir supprimer cet utilisateur ?'
+			, function(r) {
+				if (r) {
+					var action = #{jsAction @Application.deleteUser(':id') /}
+					var hr = action({id: row.id});
+				    // alert(hr);
+					document.location.href = hr;
+				}
+		});
+	} else {
+		$.messager.alert('Info', 'Veuillez sélectionner un élément à supprimer...', 'warning');
+	}
+}
+
+</script>

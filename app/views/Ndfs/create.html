@@ -1,0 +1,28 @@
+#{extends 'main.html' /}
+
+<div class="easyui-panel" title="Nouvelle note de frais" style="width:100%">
+<div style="padding:10px;">
+#{form @Ndfs.create(), id:'create-ndf'}
+    Année: 
+    <input class="easyui-numberbox" precision="0" name="year" 
+        data-options="
+            required:true
+            , prompt:'L\'année...'
+        ">
+    </input>
+    
+    Mois: 
+    <select class="easyui-combobox" name="month">
+        #{list items:months, as:'month'}
+            <option value="${month}">${month}</option>
+        #{/list}
+    </select>
+    
+    <a href="javascript:$('#create-ndf').submit();" 
+        class="easyui-linkbutton" 
+        data-options="iconCls:'icon-save'">
+        Sauvegarder
+    </a>
+#{/form}
+</div>
+</div>

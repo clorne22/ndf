@@ -1,0 +1,36 @@
+#{extends 'CRUD/layout.html' /}
+#{set 'moreScripts'}
+<script type="text/javascript">
+var getTripDefaultValuesAction = #{jsAction @Businesss.getTripDefaultValues(':destination') /}
+
+$(document).ready(function() {
+
+	// fonction de changement d'un lieu
+	$('#object_place').change(function() {
+		$.post(getTripDefaultValuesAction({destination: this.value}), null, function(business) {
+			$('#object_place').val(business.place);
+			$('#object_trip').val(business.trip);
+			$('#object_km').val(business.km);
+		}, 'json');
+	});
+
+});
+</script>
+#{/set}
+
+<div id="crudShow" class="${type.name}">
+	
+	<h2 id="crudShowTitle">&{'show.Business'}</h2>
+	
+	<div class="objectForm">
+	#{form action:@save(object.id), enctype:'multipart/form-data'}
+		#{crud.form /}
+		<p class="crudButtons">
+			<input type="submit" name="_save" value="&{'crud.save', type.modelName}" />
+			<input type="submit" name="_saveAndContinue" value="&{'crud.saveAndContinue', type.modelName}" />
+			<input type="button" name="_cancel" value="&{'crud.cancel'}" onclick="document.location = '@{Businesss.list}';" />
+		</p>
+	#{/form}
+	</div>
+	
+</div>

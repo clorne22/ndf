@@ -1,0 +1,28 @@
+#{extends 'CRUD/layout.html' /}
+
+<div id="crudList" class="${type.name}">
+	
+	<h2 id="crudListTitle">&{'crud.list.title', type.name}</h2>
+	<div id="old">
+	<div id="crudListTable">
+		#{crud.table fields:['startDate', 'endDate', 'price', 'Sup']}
+			#{crud.custom 'startDate'}
+				<p class="center"><a href="@{Kms.show(object.id)}">${object.startDate.format(null)}</a></p>
+			#{/crud.custom}
+			#{crud.custom 'endDate'}<p class="center">${object.endDate.format(null)}</p>#{/crud.custom}
+			#{crud.custom 'price'}<p class="right">${object.price.formatCcy()}</p>#{/crud.custom}
+			#{crud.custom 'Sup'}
+				#{if object.ndfs.isEmpty()}
+					#{form @delete(object.id)}
+						<p class="center"><input type="submit" class="crudListDelete" value="&{'common.delete'}" /></p>
+					#{/form}
+				#{/if}
+			#{/crud.custom}
+		#{/crud.table}
+	</div>
+	
+	<p id="crudListAdd">
+		<a href="@{blank()}">&{'add.' + type.modelName}</a>
+	</p>
+</div>
+</div>

@@ -1,0 +1,75 @@
+#{extends 'main.html' /}
+
+<table title="Liste des affaires" id="dg" style="height:400px;">
+    <thead>
+        <tr>
+            <th data-options="field:'id'">Identifiant</th>
+            <th data-options="field:'num'">Numéro</th>
+            <th data-options="field:'label'">Libellé</th>
+            <th data-options="field:'place'">Lieu</th>
+            <th data-options="field:'km', align:'right'">Nb de km</th>
+        </tr>
+    </thead>
+	*{
+    <tbody>
+	    #{list items: bs, as:'b'}
+	       <tr>
+	           <td>${b.id}</td>
+               <td>${b.number}</td>
+	           <td>
+	               <a href="@{Application.showBusiness(b.id)}" class="easyui-linkbutton" data-options="plain:true">
+	                   ${b.label}
+	               </a>
+	           </td>
+	           <td>${b.place}</td>
+	           <td>${b.km}</td>
+	       </tr>
+	    #{/list}
+    </tbody>
+	}*
+</table>
+<div id="tb" style="padding:2px 5px;">
+    <a href="@{Application.showBusiness()}" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">Ajout</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit()">Suppression</a>
+</div>
+
+<script type="text/javascript">
+
+var data=[
+	#{list items: bs, as:'b'}
+		{"id":"${b.id}","num":"${b.number}","label":"${b.label}","place":"${b.place}","km":"${b.km}"}#{if ! b_isLast},#{/if}
+	#{/list}
+];
+
+var dg = $('#dg').datagrid({
+	remoteFilter: false,
+	pagination: true,
+	iconCls:'icon-edit',
+	toolbar:'#tb',
+	pageSize: 10,
+	pageList: [10,20,50]
+});
+dg.datagrid('enableFilter');
+dg.datagrid('loadData', data);
+
+
+function removeit() {
+	var row = $('#dg').datagrid('getSelected');
+	if (row) {
+		$.messager.confirm('Confirmation de suppression'
+			, 'Etes-vous de vouloir supprimer cette affaire ?'
+			, function(r) {
+				if (r) {
+					var action = #{jsAction @Application.deleteBusiness(':id') /}
+					var hr = action({id: row.id});
+				    // alert(hr);
+					document.location.href = hr;
+				}
+		});
+	} else {
+		$.messager.alert('Info', 'Veuillez sélectionner un élément à supprimer...', 'warning');
+	}
+}
+
+
+</script>

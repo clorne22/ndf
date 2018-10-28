@@ -1,0 +1,38 @@
+#{extends 'CRUD/layout.html' /}
+
+<div id="old">
+<div id="crudList" class="${type.name}">
+	
+	<h2 id="crudShowTitle">Note de frais de ${ndf.toString()}</h2>
+	<p class="legend">
+		<span class="important">${ndf.totalPrice.formatCcy()}</span> 
+		(${ndf.items.size()} lignes) Prix du Km: ${ndf.km.price.formatCcy()}.
+	</p>
+
+	<div id="crudListTable">
+		#{crud.table fields:['itemDate', 'business', 'ndfItemTripPrice', 'km', 'ndfItemKmPrice', 'Duplicate', 'Sup']}
+			#{crud.custom 'itemDate'}
+				<a href="@{NdfItems.show(object.id)}">${object.itemDate.format(null)}</a>
+			#{/crud.custom}
+			#{crud.custom 'ndfItemTripPrice'}<p class="right">${object.ndfItemTripPrice.formatCcy()}</p>#{/crud.custom}			
+			#{crud.custom 'business'}<p class="center">#{if object.business}${object.business.number}#{/if}</p>#{/crud.custom}
+			#{crud.custom 'ndfItemKmPrice'}<p class="right">${object.ndfItemKmPrice.formatCcy()}</p>#{/crud.custom}
+			#{crud.custom 'km'}<p class="center">${object.km}</p>#{/crud.custom}
+			#{crud.custom 'Duplicate'}
+				<p class="center"><a href="@{NdfItems.duplicate(object.id)}">&{'common.duplicate'}</a></p>
+			#{/crud.custom}
+			#{crud.custom 'Sup'}
+				#{form @delete(object.id)}
+					<p class="center"><input type="submit" class="crudListDelete" value="&{'common.delete'}" /></p>
+				#{/form}
+			#{/crud.custom}
+		#{/crud.table}
+	</div>
+	
+	<p id="crudListAdd">
+		<a href="@{blank()}">&{'add.' + type.modelName, ndf.toString()}</a>
+		| <a href="@{Ndfs.generatePDF(ndf.id)}" target="_blank">Imprimer PDF</a>
+	</p>
+
+</div>
+</div>

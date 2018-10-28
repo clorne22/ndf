@@ -1,0 +1,76 @@
+#{extends 'main.html' /}
+
+#{set 'moreScripts'}
+<script src="@{'/public/javascripts/jqueryui/datagrid-groupview.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+#{/set}
+
+<table class="easyui-datagrid" title="Statistiques kilométriques" id="stats-table"
+    style="width:100%; height:450px;" 
+    data-options="
+        singleSelect:true
+        , collapsible:true
+        , rownumbers:true
+        , fitColumns:true
+        , data:data
+        , toolbar:'#tb'
+        , view:groupview
+        , groupField:'ml'
+        , groupFormatter:function(value, rows) {
+            var k = 0;
+            for (i = 0; i < rows.length; i++) {
+                k = k + parseInt(rows[i].km);
+            }
+            return value + ' - ' + k + ' km';
+        }
+        "
+    >
+    <thead class="datagrid-row-collapse">
+        <tr>
+            *{<th data-options="field:'month',width:100">Mois</th>}*
+            <th data-options="field:'bn',width:50">N° affaire</th>
+            <th data-options="field:'bl',width:150">Libellé affaire</th>
+            <th data-options="field:'km',width:70">Km</th>
+        </tr>
+    </thead>
+</table>
+<div id="tb" style="padding:2px 5px;">
+    #{form @StatisticsController.mine(year), id:'stat-form'}
+
+    Nombre de kilomètres de l'année <strong>${stat.year}</strong>
+    : <strong>${stat.kmNumberForYear}</strong>
+    
+    &nbsp;|&nbsp;Année 
+    <input class="easyui-textbox" name="year" style="width:200px;height:24px;"
+        data-options="
+            icons: [{
+                iconCls: 'icon-search'
+	            , handler: function(e) {
+	                var v = $(e.data.target).textbox('getValue');
+//	                alert('The inputed value is ' + (v ? v : 'empty'));
+                    $('#stat-form').submit();
+	            }
+            }]
+            , prompt:'Entrez une année...'
+        "
+    >
+    #{/form}
+</div>
+
+<script type="text/javascript">
+var data = [
+    #{list items: stat.statistics, as:'st'}
+        #{list items:st.keySet(), as:'k'}        
+            {
+            	"month":"${st_index}"
+            	,"ml":"${models.helpers.Utils.getMonthLabel(st_index)}"
+            	,"bn":"${k.number}"
+            	,"bl":"${k.label}"
+            	,"km":"${stat.getKmNumberForBusinessAndMonth(k, st_index - 1)}"
+            }
+            #{if ! k_isLast},#{/if}
+        #{/list}
+        #{if ! st_isLast},#{/if}
+    #{/list}
+];
+</script>
+

@@ -1,0 +1,76 @@
+#{extends 'main.html' /}
+
+<div class="easyui-panel" title="${user.id == null ? 'Nouvel utilisateur...' : 'Mise à jour d\'un utilisateur'}" >
+    <div style="padding:10px 60px 20px 60px">
+		#{form @Application.saveUser(), id:'user-form'}
+		
+		  <span class="error">#{error 'user' /}</span>
+		
+		  <input type="hidden" name="user.id" value="${user.id}" />
+		  <table>
+		    <tr>
+		      <td>Prénom</td>
+		      <td>
+		          #{easyui.textbox name:"user.firstName"
+			          , value:"${user.firstName}"
+			          , dataoptions:"prompt:'Entrez le prénom...'" /}
+		      </td>
+		    </tr>
+            <tr>
+              <td>Nom</td>
+              <td>
+                  #{easyui.textbox name:"user.lastName"
+                      , value:"${user.lastName}"
+                      , dataoptions:"prompt:'Entrez le nom...'" /}
+              </td>
+            </tr>
+            <tr>
+              <td>Login</td>
+              <td>
+                  #{easyui.textbox
+                    name:"user.login"
+                    , value:"${user.login}"
+                    , dataoptions:"prompt:'Login...',iconCls:'icon-man',iconWidth:38" /}
+              </td>
+            </tr>
+            <tr>
+              <td>Mot de passe</td>
+              <td>
+                  #{easyui.textbox
+                    name:"user.password"
+                    , type: "password"
+                    , value:"${user.login}"
+                    , dataoptions:"prompt:'Password',iconCls:'icon-lock',iconWidth:38" /}
+              </td>
+            </tr>
+            <tr>
+              <td>Administrateur</td>
+              <td>
+                <input type="checkbox" ${user.administrator ? "checked='checked'" : ""} name="user.administrator">
+                <input type="hidden" name="user.administrator" value="false" /> 
+              </td>
+            </tr>
+            <tr>
+              <td>Péage</td>
+              <td>
+                <input type="checkbox" ${user.peage ? "checked='checked'" : ""} name="user.peage">
+                <input type="hidden" name="user.peage" value="false" /> 
+              </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div style="padding:5px; text-align: center">
+                        <a href="javascript:void(0);" class="easyui-linkbutton" 
+                            onclick="$('#user-form').submit();" 
+                            data-options="iconCls:'icon-save'">Enregistrer</a>
+                        <a href="@{Application.users()}" class="easyui-linkbutton" 
+                            data-options="iconCls:'icon-cancel'">Annuler</a>
+                        
+                    </div>
+                </td>
+            </tr>
+          </table>
+          
+		#{/form}
+    </div>
+</div>

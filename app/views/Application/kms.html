@@ -1,0 +1,61 @@
+#{extends 'main.html' /}
+
+<table class="easyui-datagrid" title="Prix kilométriques" id="dg"
+    
+    data-options="
+        singleSelect:true
+        , iconCls:'icon-edit'
+        , rownumbers:true
+        , fitColumns:true
+        , toolbar:'#tb'
+        "
+    >
+    <thead>
+        <tr>
+            <th data-options="field:'id'">Identifiant</th>
+            <th data-options="field:'dd'">Date de début</th>
+            <th data-options="field:'df'">Date de fin</th>
+            <th data-options="field:'price', align:'right'">Prix</th>
+        </tr>
+    </thead>
+    <tbody>
+	    #{list items: kms, as:'km'}
+	       <tr>
+	           <td>${km.id}</td>
+	           <td>
+	               <a href="@{Application.showKm(km.id)}" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-edit'">
+	                   ${km.startDate.format(null)}
+	               </a>
+	           </td>
+	           <td>${km.endDate.format(null)}</td>
+	           <td>${km.price.formatCcy()}</td>
+	       </tr>
+	    #{/list}
+    </tbody>
+</table>
+<div id="tb" style="padding:2px 5px;">
+    <a href="@{Application.showKm()}" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">Ajout</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit()">Suppression</a>
+</div>
+
+<script type="text/javascript">
+
+function removeit() {
+	var row = $('#dg').datagrid('getSelected');
+	if (row) {
+		$.messager.confirm('Confirmation de suppression'
+			, 'Etes-vous de vouloir supprimer ces frais kilométriques ?'
+			, function(r) {
+				if (r) {
+					var action = #{jsAction @Application.deleteKm(':id') /}
+					var hr = action({id: row.id});
+				    // alert(hr);
+					document.location.href = hr;
+				}
+		});
+	} else {
+		$.messager.alert('Info', 'Veuillez sélectionner un élément à supprimer...', 'warning');
+	}
+}
+
+</script>

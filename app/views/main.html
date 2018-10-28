@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>#{get 'title' /}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta http-equiv="Expires" content="-1"/>
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/ad2i.css'}" />
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/main.css'}" />
+	    <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/jqueryui/default/easyui.css'}">
+	    <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/jqueryui/icon.css'}">
+        
+        #{get 'moreStyles' /}
+
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}" />
+        
+        *{<script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>}*
+        <script src="@{'/public/javascripts/jquery-1.12.1.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/jquery.easyui-1.4.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>        
+        <script src="@{'/public/javascripts/jqueryui/datagrid-filter.js'}" type="text/javascript" charset="${_response_encoding}"></script>        
+        
+        <script src="@{'/public/javascripts/jquery.tools.min.js'}"></script>    
+        <script src="@{'/public/javascripts/jquery.confirm-1.2.js'}"></script> 
+
+        <script src="@{'/public/javascripts/ndf.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        #{get 'moreScripts' /}
+        
+    </head>
+    <body>
+    	<div id="global">
+	    	<div id="header">
+	    	  <a href="/"><div id="logo"></div></a>
+	    		<div id="message">
+	    			Bienvenue ${user} <br/>
+	    			<a href="@{Secure.logout}">Déconnexion</a>
+	    		</div>
+	    		<div id="title">
+	    			<h1><a href="@{Application.index}">${ndfTitle}</a></h1>
+	    			<h2>${ndfBaseLine}</h2>
+	    		</div>
+	    		
+	    	</div>
+	    	
+	    	<div class="clear"></div>
+	    	
+	    	<hr/>
+	    	
+	    	<div id="main">
+	    		<div id="left">
+	    			<div class="module">
+	    				Notes de frais
+	    			</div>
+	    			<ul class="moduleitem">
+	    				#{if lastNdfs}
+	    					#{list items: lastNdfs, as: 'ndf'}
+		    					<li><a href="@{Ndfs.show(ndf.id)}">${ndf.ndfDate.format("MMMM yyyy")}</a></li>
+	    					#{/list}
+	    				#{/if}
+	    				<hr/>
+	    				*{<li><a href="@{Ndfs.blank()}" class="modalInput" id="createNdfAnchor">Nouvelle note de frais</a></li>}*
+	    				*{<li><a href="@{Ndfs.list}?order=DESC&orderBy=ndfDate">Anciennes notes de frais</a></li>}*
+	    				<li><a href="@{Ndfs.show}">Nouvelle note de frais</a></li>
+	    				<li><a href="@{Ndfs.listNdfs}">Anciennes notes de frais</a></li>
+                        <hr></hr>
+                        <li><a href="@{StatisticsController.mine}">Mes statistiques</a></li>
+	    			</ul>
+	    			
+	    			#{secure.check 'admin'}
+		    			<div class="module">
+		    				Administration
+		    			</div>
+		    			<ul class="moduleitem">
+                            <li><a href="@{Application.businesses}">Gestion des affaires</a></li>
+		    				<li><a href="@{Application.users}">Gestion des utilisateurs</a></li>
+                            <li><a href="@{Application.kms}">Gestion des prix du Km</a></li>
+                            <li><a href="@{Businesss.list}?order=DESC&orderBy=number">Gestion des affaires OLD</a></li>
+                            *{
+                            <li><a href="@{Users.list}">Gestion des utilisateurs OLD</a></li>
+                            <li><a href="@{Kms.list}">Gestion des prix du Km OLD</a></li>
+                            }*
+		    			</ul>
+		    		#{/secure.check}
+	    		</div>
+	    		
+	    		<div id="center">
+                    #{if flash.success}
+                        <p class="feedback ok">${flash.success}</p>
+                    #{/if}
+                    
+                    #{if flash.error}
+                        <p class="feedback error">${flash.error}</p>
+                    #{/if}
+                    
+		        	#{doLayout /}
+	    		</div>
+		        <div class="clear"></div>
+	        </div>
+	        
+	    </div>
+        <div id="footer">
+        	Application de gestion des notes de frais de la société AD2I | © Société Christian Lorne 2009 - 2010
+        </div>
+
+    </body>
+    
+    <script type="text/javascript" charset="UTF-8">
+    /*
+    var triggers = $(".modalInput").overlay({
+    
+	    // some expose tweaks suitable for modal dialogs 
+	    expose: { 
+	        color: '#333', 
+	        loadSpeed: 100, 
+	        opacity: 0.9 
+	    }, 
+	 
+	    closeOnClick: false
+	});
+	
+*/
+
+    </script>
+</html>

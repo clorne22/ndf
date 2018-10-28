@@ -1,0 +1,11 @@
+#{extends 'CRUD/layout.html' /}
+
+	
+<h2>Télécharger le fichier des affaires</h2>
+
+#{form @upload(), method:'POST', enctype:'multipart/form-data'}
+	<h4>Sélectionner le fichier</h4>
+    <input type="file" name="fileAffaires" size="80"/><br/>
+    <br/>
+    <input type="submit"/>
+#{/form}

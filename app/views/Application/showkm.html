@@ -1,0 +1,50 @@
+#{extends 'main.html' /}
+
+<div class="easyui-panel" title="Nouveau km..." >
+    <div style="padding:10px 60px 20px 60px">
+		#{form @Application.saveKm(), id:'km-form'}
+		
+		  <span class="error">#{error 'km' /}</span>
+		
+		  <input type="hidden" name="km.id" value="${km.id}" />
+		  <table>
+		    <tr>
+		      <td>Date de début</td>
+		      <td>
+		          <input class="easyui-datebox" name="km.startDate" id="km.startDate"
+		              value='${flash["km.startDate"] ? flash["km.startDate"] : km.startDate?.format(null)}'></input>
+		          <span class="error">#{error 'km.startDate' /}</span>
+		      </td>
+		    </tr>
+            <tr>
+              <td>Date de fin</td>
+              <td>
+                <input class="easyui-datebox" name="km.endDate" id="km.endDate" 
+                    value='${flash["km.endDate"] ? flash["km.endDate"] : km.endDate?.format(null)}'></input>
+                <span class="error">#{error 'km.endDate' /}</span>
+              </td>
+            </tr>
+            <tr>
+                <td>Prix</td>
+                <td>
+                    #{easyui.currencybox name: "km.price", value: km.price?.formatCcy() /}
+                    <span class="error">#{error 'km.price' /}</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div style="padding:5px; text-align: center">
+                        <a href="javascript:void(0);" class="easyui-linkbutton" 
+                            onclick="$('#km-form').submit();" 
+                            data-options="iconCls:'icon-save'">Enregistrer</a>
+                        <a href="@{Application.kms()}" class="easyui-linkbutton" 
+                            data-options="iconCls:'icon-cancel'">Annuler</a>
+                        
+                    </div>
+                </td>
+            </tr>
+          </table>
+          
+		#{/form}
+    </div>
+</div>

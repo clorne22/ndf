@@ -1,0 +1,29 @@
+#{extends 'main.html' /}
+
+<div class="easyui-datalist" title="Toutes vos notes de frais"
+    style="width:100%; height:350px"
+    lines="true"
+    data-options="
+        data:data
+        , groupField:'year'
+        , textFormatter: function(value) {
+            return '<a class=\'datalist-link\' href=\'javascript:void(0);\'>' + value + '</a>';
+        }
+        , onClickRow: function(index,row) {
+            document.location.href = '@{Ndfs.show}?id=' + row.id;
+        }
+    ">
+</div>
+
+<script type="text/javascript">
+var data = [
+    #{list items: ndfs, as:'ndf'}
+        {
+            "year":"${ndf.ndfYear}"
+            ,"text":"${ndf.dateLabel}"
+            , "id":"${ndf.id}"
+        }
+        #{if ! ndf_isLast},#{/if}
+    #{/list}
+];
+</script>
