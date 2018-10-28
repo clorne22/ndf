@@ -1,0 +1,1 @@
+﻿select n.ndf_date, sum(km) from t_ndf n, t_ndf_item i where i.ndf_id=n.id and n.ndf_date >= '2014-01-01' group by n.ndf_date order by n.ndf_date

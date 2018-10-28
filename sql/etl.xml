@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE etl SYSTEM "http://scriptella.javaforge.com/dtd/etl.dtd">
+
+<etl>
+	<description>Transfert des données de l'ancien modèle de base (avec tous les schémas) au nouveau</description>
+	
+	<connection id="dest" driver="org.postgresql.Driver" user="postgres" password="postgres" 
+		url="jdbc:postgresql:chantiers2" classpath="postgresql-8.2-506.jdbc3.jar"></connection>
+	<connection id="src" driver="org.postgresql.Driver" user="postgres" password="postgres" 
+		url="jdbc:postgresql:chantiers" classpath="postgresql-8.2-506.jdbc3.jar"></connection>
+
+	<script connection-id="dest">
+		delete from t_ndf_item;
+		delete from t_ndf;
+		delete from t_user;
+		delete from t_km;
+		delete from t_business;
+	</script>
+	
+	<!-- Copie des données -->
+	<query connection-id="src">
+		select * from ndf.t_prix_km;
+		<script connection-id="dest">
+			insert into t_km (id, start_date, end_date, price) values ($id_prix_km, ?date_debut, ?date_fin, $prix);
+		</script>
+	</query>
+	<query connection-id="src">
+		select u.id_user, u.login, u.passwd, c.prenom, c.nom from annuaire.t_user u, annuaire.t_contact c where c.id_contact = u.contact;
+		<script connection-id="dest">
+			insert into t_user (id, first_name, last_name, login, password, administrator) values (?id_user, ?prenom, ?nom, ?login, ?passwd, true);
+		</script>
+	</query>
+	<query connection-id="src">
+		select * from gop.t_affaire;
+		<script connection-id="dest">
+			insert into t_business (id, number, label, place, trip, trip_object, km, trip_price)
+				values (?id_affaire, ?numero, ?libelle, ?lieu, ?trajet, ?objet_deplacement, ?nb_km, ?frais_deplacement);
+		</script>
+	</query>	
+	<query connection-id="src">
+		select * from ndf.t_note_frais;
+		<script connection-id="dest">
+			insert into t_ndf (id, ndf_date, km_id, user_id)
+				values (?id_note_frais, ?date, ?prix_km, ?salarie);
+		</script>
+	</query>
+	<query connection-id="src">
+		select * from ndf.note_frais_item;
+		<script connection-id="dest">
+			insert into t_ndf_item (id, ndf_id, business_id, ndf_item_date, place, ndf_item_object, trip, ndf_item_trip_price, ndf_item_km_price, km)
+				values (?id_note_frais_item, ?note_frais, ?affaire, ?date, ?lieu, ?objet, ?trajet, ?montant_frais_deplacement, ?montant_frais_km, ?nb_km);
+		</script>
+	</query>
+
+	<!-- Corrections dûes aux types simples utilisés -->	
+	<script connection-id="dest">
+		update t_business set trip_price = 0 where trip_price is null;
+		update t_ndf_item set km = 0 where km is null;
+		update t_ndf_item set ndf_item_km_price = 0 where ndf_item_km_price is null;
+	</script>
+
+</etl>

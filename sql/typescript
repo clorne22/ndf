@@ -1,0 +1,17 @@
+Le script a débuté sur sam. 24 avril 2010 17:25:21 CEST
+]0;clorne@clorne-desktop: ~/workspace/ndf/sqlclorne@clorne-desktop:~/workspace/ndf/sql$ rm ../sig-ecolo.gif ^C
+]0;clorne@clorne-desktop: ~/workspace/ndf/sqlclorne@clorne-desktop:~/workspace/ndf/sql$ script
+script        scriptreplay  
+]0;clorne@clorne-desktop: ~/workspace/ndf/sqlclorne@clorne-desktop:~/workspace/ndf/sql$ scripte[K[K[K[K[K[K[K~/bin/scri[K[K[K[Kl~/bin/e~/bin/[1P~/bin/s~/bin/ ~/bin/-~/bin/a~/bin/l~/bin/ ~/bin/*~/bin/
+ls: ne peut accéder *~/bin/: Aucun fichier ou dossier de ce type
+]0;clorne@clorne-desktop: ~/workspace/ndf/sqlclorne@clorne-desktop:~/workspace/ndf/sql$ ls -al *~/bin/[1P~/bin/
+total 8
+drwxr-xr-x  2 clorne clorne 4096 2010-04-24 17:11 [0m[01;34m.[0m
+drwxr-xr-x 37 clorne clorne 4096 2010-04-24 15:42 [01;34m..[0m
+lrwxrwxrwx  1 clorne clorne   25 2010-04-24 16:30 [01;36mjsplit[0m -> [01;32m/opt/JSplit-1.2/JSplit.sh[0m
+lrwxrwxrwx  1 clorne clorne   38 2010-04-15 08:58 [01;36mmaven[0m -> [01;32m/home/clorne/softs/maven-1.1/bin/maven[0m
+lrwxrwxrwx  1 clorne clorne   22 2010-04-24 16:32 [01;36mplay[0m -> [01;32m/opt/play-1.0.2.1/play[0m
+lrwxrwxrwx  1 clorne clorne   39 2010-04-24 17:11 [01;36mscriptella[0m -> /opt/scriptella-1.0rc/bin/scriptella.sh
+[m]0;clorne@clorne-desktop: ~/workspace/ndf/sqlclorne@clorne-desktop:~/workspace/ndf/sql$ exit
+
+Script complété sur sam. 24 avril 2010 17:26:04 CEST
